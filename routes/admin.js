@@ -1,5 +1,5 @@
 const express  = require('express');
-const Anthropic = require('@anthropic-ai/sdk');
+const OpenAI   = require('openai');
 const router   = express.Router();
 
 function requireAuth(req, res, next) {
@@ -78,23 +78,23 @@ router.post('/larry', requireAuth, async (req, res) => {
   if (!message || !message.trim()) {
     return res.status(400).json({ success: false, message: 'Bericht mag niet leeg zijn.' });
   }
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ success: false, message: 'API-sleutel ontbreekt.' });
   }
   try {
-    const client = new Anthropic({ apiKey });
+    const client = new OpenAI({ apiKey });
     const messages = [
+      { role: 'system', content: LARRY_SYSTEM },
       ...history.slice(-10),
       { role: 'user', content: message.trim() }
     ];
-    const response = await client.messages.create({
-      model: 'claude-opus-4-6',
+    const response = await client.chat.completions.create({
+      model: 'gpt-4o',
       max_tokens: 1024,
-      system: LARRY_SYSTEM,
       messages
     });
-    res.json({ success: true, reply: response.content[0]?.text ?? 'Geen antwoord.' });
+    res.json({ success: true, reply: response.choices[0]?.message?.content ?? 'Geen antwoord.' });
   } catch (err) {
     console.error('Larry fout:', err.message);
     res.status(500).json({ success: false, message: 'Er ging iets mis. Probeer opnieuw.' });
