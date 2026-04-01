@@ -98,13 +98,14 @@
   <script>
     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const pw  = document.getElementById('pw');
+      const pw = document.getElementById('pw');
       const err = document.getElementById('err');
       err.style.display = 'none';
       try {
-        const res  = await fetch('/api/login', {
+        const res = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ password: pw.value })
         });
         const data = await res.json();
