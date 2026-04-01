@@ -8,6 +8,9 @@ const adminRoutes = require('./routes/admin');
 const app  = express();
 const PORT = process.env.PORT || 4000;
 
+// Vertrouw de Railway proxy zodat secure cookies werken via HTTPS
+app.set('trust proxy', 1);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -17,7 +20,7 @@ app.use(session({
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 8 * 60 * 60 * 1000  // 8 uur
+    maxAge: 8 * 60 * 60 * 1000 // 8 uur
   }
 }));
 
