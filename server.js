@@ -49,5 +49,5 @@ app.get('/dashboard', (req, res) => {
 app.use((req, res) => res.redirect('/'));
 
 app.listen(PORT, () => {
-  console.log(`SamenOntzorgen Admin draait op http://localhost:${PORT}`);
+  console.log(`Eisenhower Command Center draait op http://localhost:${PORT}`);
 });

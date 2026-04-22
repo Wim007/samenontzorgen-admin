@@ -1,7 +1,7 @@
 {
-  "name": "samenontzorgen-admin",
+  "name": "eisenhower",
   "version": "1.0.0",
-  "description": "Admin panel voor SamenOntzorgen — chat met Larry en teamoverzicht",
+  "description": "Eisenhower — command center voor alle AI-projecten van Wim",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-session": "^1.18.0",
-    "openai": "^4.0.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
