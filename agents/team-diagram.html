@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SamenOntzorgen — AI Team</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 40px;
+  }
+
+  /* EISENHOWER */
+  .top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .card-top {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 18px 32px;
+    text-align: center;
+    min-width: 220px;
+    position: relative;
+  }
+
+  .card-top::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: #334155;
+  }
+
+  .card-top .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: 1px;
+  }
+
+  .card-top .role {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* HORIZONTAL CONNECTOR */
+  .connector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    position: relative;
+    height: 30px;
+  }
+
+  .h-line {
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background: #334155;
+  }
+
+  /* PROJECT MANAGERS ROW */
+  .pm-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .pm-connector {
+    width: 2px;
+    height: 30px;
+    background: #334155;
+  }
+
+  /* PM CARDS */
+  .card-pm {
+    border-radius: 10px;
+    padding: 14px 22px;
+    text-align: center;
+    min-width: 190px;
+    position: relative;
+  }
+
+  .card-pm::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: #334155;
+  }
+
+  .larry  { background: linear-gradient(135deg, #1a2744, #0f1e38); border: 1px solid #2d4a7a; }
+  .marina { background: linear-gradient(135deg, #1a2a1a, #0f1f0f); border: 1px solid #2d6a2d; }
+  .sophia { background: linear-gradient(135deg, #2a1a2a, #1f0f1f); border: 1px solid #6a2d6a; }
+  .admin-pm { background: linear-gradient(135deg, #2a2a1a, #1f1f0f); border: 1px solid #6a6a2d; }
+
+  .card-pm .name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .card-pm .role {
+    font-size: 10px;
+    color: #94a3b8;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* SUBAGENT GRID */
+  .subagents {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 190px;
+    padding-top: 30px;
+  }
+
+  .agent {
+    border-radius: 8px;
+    padding: 10px 14px;
+    border-left: 3px solid;
+  }
+
+  .agent-larry  { background: #0d1829; border-color: #2d4a7a; }
+  .agent-marina { background: #0d1a0d; border-color: #2d6a2d; }
+  .agent-sophia { background: #1a0d1a; border-color: #6a2d6a; }
+  .agent-admin  { background: #1a1a0d; border-color: #6a6a2d; }
+
+  .agent .name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+
+  .agent .task {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<h1>SamenOntzorgen — AI Team · 37 Agents</h1>
+
+<!-- EISENHOWER -->
+<div class="top">
+  <div class="card-top">
+    <div class="name">Eisenhower</div>
+    <div class="role">Command Center · Orchestrator</div>
+  </div>
+</div>
+
+<!-- VERTICAL + HORIZONTAL LINES -->
+<div style="display:flex;justify-content:center;height:30px;position:relative;">
+  <div style="width:2px;background:#334155;height:100%;"></div>
+</div>
+
+<!-- PM ROW -->
+<div class="pm-row">
+
+  <!-- LARRY / SAMENONTZORGEN -->
+  <div class="column">
+    <div class="card-pm larry">
+      <div class="name">Larry</div>
+      <div class="role">SamenOntzorgen PM</div>
+    </div>
+    <div class="subagents">
+      <div class="agent agent-larry"><div class="name">Bax</div><div class="task">Senior onderzoeker · marktdata, sector</div></div>
+      <div class="agent agent-larry"><div class="name">Sam</div><div class="task">LinkedIn outreach · zorginstellingen</div></div>
+      <div class="agent agent-larry"><div class="name">Nova</div><div class="task">Deal coach · verkoopgesprekken, pilots</div></div>
+      <div class="agent agent-larry"><div class="name">Nolan</div><div class="task">HR directeur · nieuwe agents aanmaken</div></div>
+      <div class="agent agent-larry"><div class="name">Vera</div><div class="task">Content strateeg · LinkedIn, nieuwsbrief</div></div>
+      <div class="agent agent-larry"><div class="name">Finn</div><div class="task">LinkedIn netwerk · warm netwerk, InMails</div></div>
+      <div class="agent agent-larry"><div class="name">Rosa</div><div class="task">Facebook content · ZZP'ers, deeltijdwerkers</div></div>
+      <div class="agent agent-larry"><div class="name">Daan</div><div class="task">Facebook outreach · DMs, groepen</div></div>
+      <div class="agent agent-larry"><div class="name">Lena</div><div class="task">Intake specialist · nieuwe leden begeleiden</div></div>
+      <div class="agent agent-larry"><div class="name">Iris</div><div class="task">Prospect researcher · huisartsenpraktijken</div></div>
+      <div class="agent agent-larry"><div class="name">Bram</div><div class="task">Huisartsen outreach · LinkedIn, e-mail</div></div>
+    </div>
+  </div>
+
+  <!-- MARINA / MATTI -->
+  <div class="column">
+    <div class="card-pm marina">
+      <div class="name">Marina</div>
+      <div class="role">Matti PM</div>
+    </div>
+    <div class="subagents">
+      <div class="agent agent-marina"><div class="name">Aria</div><div class="task">Strategist · tone bewaker, positionering</div></div>
+      <div class="agent agent-marina"><div class="name">Liam</div><div class="task">App designer · UX/UI, mobile-first</div></div>
+      <div class="agent agent-marina"><div class="name">Sophie</div><div class="task">School outreach · pilotvoorstellen</div></div>
+      <div class="agent agent-marina"><div class="name">Josh</div><div class="task">Instagram creator · posts, reels</div></div>
+      <div class="agent agent-marina"><div class="name">Maya</div><div class="task">Community manager · Discord</div></div>
+      <div class="agent agent-marina"><div class="name">Zoe</div><div class="task">TikTok creator · korte video's, trends</div></div>
+      <div class="agent agent-marina"><div class="name">Alex</div><div class="task">Safety monitor · risico's, escalatie</div></div>
+      <div class="agent agent-marina"><div class="name">Jordan</div><div class="task">Parent liaison · brug Matti ↔ Opvoedmaatje</div></div>
+      <div class="agent agent-marina"><div class="name">Casey</div><div class="task">Integration specialist · app ↔ dashboard</div></div>
+      <div class="agent agent-marina"><div class="name">Riley</div><div class="task">Quality lead · tone review, consistentie</div></div>
+    </div>
+  </div>
+
+  <!-- SOPHIA / AI DOC -->
+  <div class="column">
+    <div class="card-pm sophia">
+      <div class="name">Sophia</div>
+      <div class="role">AI Doc PM</div>
+    </div>
+    <div class="subagents">
+      <div class="agent agent-sophia"><div class="name">Esther</div><div class="task">Medical strategist · positionering, compliance</div></div>
+      <div class="agent agent-sophia"><div class="name">Sebastian</div><div class="task">Medical researcher · SOEP, genderbias</div></div>
+      <div class="agent agent-sophia"><div class="name">Henri</div><div class="task">GP outreach · huisartsenpraktijken benaderen</div></div>
+      <div class="agent agent-sophia"><div class="name">Claire</div><div class="task">Workflow designer · SOEP-integratie</div></div>
+      <div class="agent agent-sophia"><div class="name">Lucas</div><div class="task">Gender bias expert · alerts, educatie</div></div>
+      <div class="agent agent-sophia"><div class="name">Marie</div><div class="task">Compliance officer · AVG, regelgeving</div></div>
+      <div class="agent agent-sophia"><div class="name">Thomas</div><div class="task">Practice manager contact · operations</div></div>
+      <div class="agent agent-sophia"><div class="name">Alice</div><div class="task">Patient liaison · empathische communicatie</div></div>
+      <div class="agent agent-sophia"><div class="name">François</div><div class="task">Medical content · blogs, whitepapers</div></div>
+      <div class="agent agent-sophia"><div class="name">Noah</div><div class="task">Implementation specialist · onboarding</div></div>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="column">
+    <div class="card-pm admin-pm">
+      <div class="name">Admin</div>
+      <div class="role">Meta-taken</div>
+    </div>
+    <div class="subagents">
+      <div class="agent agent-admin"><div class="name">Documentatie</div><div class="task">Processen vastleggen, CLAUDE.md bijhouden</div></div>
+      <div class="agent agent-admin"><div class="name">Planning</div><div class="task">Strategische reflectie, roadmap</div></div>
+      <div class="agent agent-admin"><div class="name">Tools setup</div><div class="task">Configuratie, omgevingsvariabelen</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#2d4a7a;"></div> SamenOntzorgen</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2d6a2d;"></div> Matti</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6a2d6a;"></div> AI Doc</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6a6a2d;"></div> Admin</div>
+</div>
+
+</body>
+</html>
